@@ -8,6 +8,7 @@ namespace WebApi.Controllers
 {
     [ApiVersion("1.0")]
     [ApiVersion("2.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
