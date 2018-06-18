@@ -7,15 +7,25 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebApi.Controllers
 {
     [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
         // GET api/values
         [HttpGet]
+        // This is used vor APi version 1
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return Get("v1");
+        }
+
+        // GET api/values
+        [HttpGet()]
+        [MapToApiVersion("2.0")]
+        public ActionResult<IEnumerable<string>> Get(string param = "v2")
+        {
+            return new string[] { "value1", "value2", param };
         }
 
         // GET api/values/5
